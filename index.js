@@ -110,7 +110,7 @@ function Calculate() {
 
             result = transformValueResult(result);
 
-            finalResult.unshift(result);
+            finalResult.unshift(String(result));
 
         } else if (result <= 15) {
             result = transformValueResult(result);
@@ -119,7 +119,6 @@ function Calculate() {
         }
     }
     finalResult = finalResult.join('').replace(/\B(?=(\w{4})+(?!\w))/g, ' $&');
-    console.log(finalResult);
 
     document.getElementById("result").innerHTML = finalResult;
 }
