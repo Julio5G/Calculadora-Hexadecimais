@@ -1,7 +1,15 @@
-function Calculate() {
-    let hex1 = document.getElementById("hex1").value;
-    let hex2 = document.getElementById("hex2").value;
+let hex1;
+let hex2;
+let lengthMaxHex;
+let aux = 0;
+let finalResult = [];
 
+function getValueInInputs() {
+    hex1 = document.getElementById("hex1").value;
+    hex2 = document.getElementById("hex2").value;
+}
+
+function formatValueHex() {
     hex1 = hex1.toUpperCase();
     hex2 = hex2.toUpperCase();
 
@@ -11,60 +19,78 @@ function Calculate() {
     hex1 = hex1.split('').reverse().join('');
     hex2 = hex2.split('').reverse().join('');
 
-    let j = Math.max(hex1.length, hex2.length);
+    lengthMaxHex = Math.max(hex1.length, hex2.length);
 
-    hex1 = hex1.padEnd(j, '0');
-    hex2 = hex2.padEnd(j, '0');
+    hex1 = hex1.padEnd(lengthMaxHex, '0');
+    hex2 = hex2.padEnd(lengthMaxHex, '0');
+}
 
-    let aux = 0;
-    let finalResult = [];
+function transformValue(hexV, i) {
+    let hexSom;
 
-    for (i = 0; i <= j; i++) {
+    switch (hexV[i]) {
+        case '0': hexSom = 0; break;
+        case '1': hexSom = 1; break;
+        case '2': hexSom = 2; break;
+        case '3': hexSom = 3; break;
+        case '4': hexSom = 4; break;
+        case '5': hexSom = 5; break;
+        case '6': hexSom = 6; break;
+        case '7': hexSom = 7; break;
+        case '8': hexSom = 8; break;
+        case '9': hexSom = 9; break;
+        case 'A': hexSom = 10; break;
+        case 'B': hexSom = 11; break;
+        case 'C': hexSom = 12; break;
+        case 'D': hexSom = 13; break;
+        case 'E': hexSom = 14; break;
+        case 'F': hexSom = 15; break;
+        default: hexSom = undefined;
+    }
+
+    return hexSom;
+}
+
+function transformValueResult(res) {
+    switch (res) {
+        case 0: res = '0'; break;
+        case 1: res = '1'; break;
+        case 2: res = '2'; break;
+        case 3: res = '3'; break;
+        case 4: res = '4'; break;
+        case 5: res = '5'; break;
+        case 6: res = '6'; break;
+        case 7: res = '7'; break;
+        case 8: res = '8'; break;
+        case 9: res = '9'; break;
+        case 10: res = 'A'; break;
+        case 11: res = 'B'; break;
+        case 12: res = 'C'; break;
+        case 13: res = 'D'; break;
+        case 14: res = 'E'; break;
+        case 15: res = 'F'; break;
+
+        default: console.log("Chegou aqui " + result);
+    }
+
+    return res;
+}
+
+function Calculate() {
+
+    getValueInInputs();
+
+    formatValueHex();
+
+    for (i = 0; i <= lengthMaxHex; i++) {
         let result;
         let hex1Som;
         let hex2Som;
 
-        switch (hex1[i]) {
-            case '0': hex1Som = 0; break;
-            case '1': hex1Som = 1; break;
-            case '2': hex1Som = 2; break;
-            case '3': hex1Som = 3; break;
-            case '4': hex1Som = 4; break;
-            case '5': hex1Som = 5; break;
-            case '6': hex1Som = 6; break;
-            case '7': hex1Som = 7; break;
-            case '8': hex1Som = 8; break;
-            case '9': hex1Som = 9; break;
-            case 'A': hex1Som = 10; break;
-            case 'B': hex1Som = 11; break;
-            case 'C': hex1Som = 12; break;
-            case 'D': hex1Som = 13; break;
-            case 'E': hex1Som = 14; break;
-            case 'F': hex1Som = 15; break;
-            default: hex1Som = undefined;
-        }
+        hex1Som = transformValue(hex1, i);
+        hex2Som = transformValue(hex2, i);
 
-        switch (hex2[i]) {
-            case '0': hex2Som = 0; break;
-            case '1': hex2Som = 1; break;
-            case '2': hex2Som = 2; break;
-            case '3': hex2Som = 3; break;
-            case '4': hex2Som = 4; break;
-            case '5': hex2Som = 5; break;
-            case '6': hex2Som = 6; break;
-            case '7': hex2Som = 7; break;
-            case '8': hex2Som = 8; break;
-            case '9': hex2Som = 9; break;
-            case 'A': hex2Som = 10; break;
-            case 'B': hex2Som = 11; break;
-            case 'C': hex2Som = 12; break;
-            case 'D': hex2Som = 13; break;
-            case 'E': hex2Som = 14; break;
-            case 'F': hex2Som = 15; break;
-            default: hex2Som = undefined;
-        }
-
-        if (i == j && aux == 1) {
+        if (i == lengthMaxHex && aux == 1) {
             finalResult.unshift(String(0 + 0 + aux));
         }
 
@@ -77,57 +103,17 @@ function Calculate() {
 
         if (result > 15) {
             aux = 1;
-
         }
 
         if (result >= 16) {
             result -= 16;
 
-            switch (result) {
-                case 0: result = '0'; break;
-                case 1: result = '1'; break;
-                case 2: result = '2'; break;
-                case 3: result = '3'; break;
-                case 4: result = '4'; break;
-                case 5: result = '5'; break;
-                case 6: result = '6'; break;
-                case 7: result = '7'; break;
-                case 8: result = '8'; break;
-                case 9: result = '9'; break;
-                case 10: result = 'A'; break;
-                case 11: result = 'B'; break;
-                case 12: result = 'C'; break;
-                case 13: result = 'D'; break;
-                case 14: result = 'E'; break;
-                case 15: result = 'F'; break;
-
-                default: console.log("Chegou aqui " + result);
-            }
+            result = transformValueResult(result);
 
             finalResult.unshift(result);
 
         } else if (result <= 15) {
-
-            switch (result) {
-                case 0: result = '0'; break;
-                case 1: result = '1'; break;
-                case 2: result = '2'; break;
-                case 3: result = '3'; break;
-                case 4: result = '4'; break;
-                case 5: result = '5'; break;
-                case 6: result = '6'; break;
-                case 7: result = '7'; break;
-                case 8: result = '8'; break;
-                case 9: result = '9'; break;
-                case 10: result = 'A'; break;
-                case 11: result = 'B'; break;
-                case 12: result = 'C'; break;
-                case 13: result = 'D'; break;
-                case 14: result = 'E'; break;
-                case 15: result = 'F'; break;
-
-                default: console.log("Chegou aqui " + result);
-            }
+            result = transformValueResult(result);
 
             finalResult.unshift(String(result));
         }
