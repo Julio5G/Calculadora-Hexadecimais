@@ -5,9 +5,12 @@ function Calculate() {
     hex1 = hex1.toUpperCase();
     hex2 = hex2.toUpperCase();
 
+    hex1 = hex1.split(' ').join('');
+    hex2 = hex2.split(' ').join('');
+
     hex1 = hex1.split('').reverse().join('');
     hex2 = hex2.split('').reverse().join('');
-    
+
     let j = Math.max(hex1.length, hex2.length);
 
     hex1 = hex1.padEnd(j, '0');
@@ -20,7 +23,7 @@ function Calculate() {
         let result;
         let hex1Som;
         let hex2Som;
-        
+
         switch (hex1[i]) {
             case '0': hex1Som = 0; break;
             case '1': hex1Som = 1; break;
@@ -40,7 +43,7 @@ function Calculate() {
             case 'F': hex1Som = 15; break;
             default: hex1Som = undefined;
         }
-        
+
         switch (hex2[i]) {
             case '0': hex2Som = 0; break;
             case '1': hex2Som = 1; break;
@@ -62,7 +65,7 @@ function Calculate() {
         }
 
         if (i == j && aux == 1) {
-            finalResult.unshift(String (0 + 0 + aux)); 
+            finalResult.unshift(String(0 + 0 + aux));
         }
 
         if (aux == 1) {
@@ -71,12 +74,12 @@ function Calculate() {
         } else {
             result = hex1Som + hex2Som;
         }
-        
+
         if (result > 15) {
             aux = 1;
-            
+
         }
-        
+
         if (result >= 16) {
             result -= 16;
 
@@ -129,6 +132,7 @@ function Calculate() {
             finalResult.unshift(String(result));
         }
     }
+    finalResult = finalResult.join('').replace(/\B(?=(\w{4})+(?!\w))/g, ' $&');
 
-    document.getElementById("result").innerHTML = finalResult.join('');
+    document.getElementById("result").innerHTML = finalResult;
 }
