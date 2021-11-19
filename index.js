@@ -77,6 +77,9 @@ function transformValueResult(res) {
 function Calculate() {
     let aux = 0;
     let finalResult = [];
+    let divRes = document.getElementById("result");
+
+    divRes.innerHTML = "";
 
     getValueInInputs();
 
@@ -120,5 +123,5 @@ function Calculate() {
     }
     finalResult = finalResult.join('').replace(/\B(?=(\w{4})+(?!\w))/g, ' $&');
 
-    document.getElementById("result").innerHTML = finalResult;
+    divRes.innerHTML = finalResult;
 }
