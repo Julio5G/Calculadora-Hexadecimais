@@ -1,8 +1,6 @@
 let hex1;
 let hex2;
 let lengthMaxHex;
-let aux = 0;
-let finalResult = [];
 
 function getValueInInputs() {
     hex1 = document.getElementById("hex1").value;
@@ -77,6 +75,8 @@ function transformValueResult(res) {
 }
 
 function Calculate() {
+    let aux = 0;
+    let finalResult = [];
 
     getValueInInputs();
 
@@ -119,6 +119,7 @@ function Calculate() {
         }
     }
     finalResult = finalResult.join('').replace(/\B(?=(\w{4})+(?!\w))/g, ' $&');
+    console.log(finalResult);
 
     document.getElementById("result").innerHTML = finalResult;
 }
